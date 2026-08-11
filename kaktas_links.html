@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KAK+TAS — Play free</title>
+<meta name="description" content="KAK+TAS — a free, ad-free blast puzzle on Android. Also for kids: KAK+TAS KIDS.">
+<style>
+  :root{ --ink:#242a37; --card:#ffffff; --line:#eaeef7; --orange:#ff9a3d; }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;min-height:100%}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans","Noto Sans Arabic",sans-serif;
+    color:var(--ink);position:relative;overflow-x:hidden;
+    background:linear-gradient(160deg,#fdeff5 0%,#eef4ff 48%,#fff8ea 100%);
+  }
+  #bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .scrim{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.18) 26%,rgba(255,255,255,0) 46%,rgba(255,255,255,.15) 100%)}
+  .wrap{position:relative;z-index:2;width:100%;max-width:460px;margin:0 auto;padding:26px 20px 40px;text-align:center}
+  .langs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+  .langs button{border:1px solid var(--line);background:rgba(255,255,255,.72);color:#5a6274;
+    font-weight:700;font-size:12px;border-radius:999px;padding:5px 11px;cursor:pointer}
+  .langs button.on{background:#3a3f4b;color:#fff;border-color:#3a3f4b}
+  .logo{font-weight:900;font-size:44px;letter-spacing:-1px;line-height:1;color:#3a3f4b;margin:6px 0 2px;
+    text-shadow:0 2px 14px rgba(255,255,255,.9)}
+  .logo .plus{color:var(--orange)}
+  .badge{display:inline-block;background:linear-gradient(90deg,#6a8cff,#9db4ff);color:#fff;
+    font-weight:800;font-size:11px;letter-spacing:3px;border-radius:999px;padding:4px 13px;margin-top:6px}
+  .tag{color:#4c5566;font-size:15px;margin:14px 0 18px;font-weight:700;text-shadow:0 1px 10px rgba(255,255,255,.9)}
+  a.btn{display:flex;align-items:center;gap:12px;justify-content:center;text-decoration:none;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px 18px;margin:11px 0;
+    font-weight:800;font-size:16px;box-shadow:0 8px 22px rgba(60,80,140,.14);transition:transform .08s}
+  a.btn:active{transform:translateY(1px) scale(.995)}
+  a.btn .em{font-size:20px;flex:none}
+  a.btn.primary{background:linear-gradient(90deg,#ffb347,#ff8a3d);color:#3a2a10;border:none}
+  a.btn.kids{background:linear-gradient(90deg,#7aa0ff,#a9c0ff);color:#12224a;border:none}
+  a.btn small{display:block;font-weight:600;font-size:12px;opacity:.85;margin-top:1px}
+  a.btn .lbl{text-align:start}
+  .row{display:flex;gap:11px}.row a.btn{flex:1}
+  .foot{margin-top:22px;color:#6f7686;font-size:12px;line-height:1.6;text-shadow:0 1px 8px rgba(255,255,255,.9)}
+  .foot a{color:#6f7686}
+</style>
+</head>
+<body>
+<video id="bg" autoplay muted loop playsinline preload="auto">
+  <source src="kaktas_bg_loop.mp4" type="video/mp4">
+</video>
+<div class="scrim"></div>
+<div class="wrap">
+  <div class="langs" id="langs"></div>
+  <div class="logo">KAK<span class="plus">+</span>TAS</div>
+  <div class="badge">HIGH-SPEED VOID PUZZLE</div>
+  <div class="tag" data-t="tag"></div>
+
+  <a class="btn primary" href="https://play.google.com/store/apps/details?id=dev.orihakatiromo.kaktas">
+    <span class="em">▶</span><span class="lbl"><span data-t="playT"></span><small data-t="playS"></small></span>
+  </a>
+  <a class="btn kids" href="https://play.google.com/store/apps/details?id=dev.orihakatiromo.kaktas.kids">
+    <span class="em">🧩</span><span class="lbl">KAK+TAS KIDS<small data-t="kidsS"></small></span>
+  </a>
+  <a class="btn" href="https://www.youtube.com/watch?v=TchntESa-g0">
+    <span class="em">🎬</span><span class="lbl" data-t="trailer"></span>
+  </a>
+  <div class="row">
+    <a class="btn" href="https://orihakatiromo.itch.io/"><span class="em">🕹️</span><span class="lbl" data-t="more"></span></a>
+    <a class="btn" href="https://x.com/OrihakaTiromo"><span class="em">𝕏</span><span class="lbl" data-t="follow"></span></a>
+  </div>
+  <div class="foot"><span data-t="foot"></span><br>© 2026 ADVDA · <a href="mailto:orihakatiromo@gmail.com">orihakatiromo@gmail.com</a></div>
+</div>
+
+<script>
+const I18N = {
+  en:{name:"EN", rtl:false, tag:"A free blast puzzle — no ads, no in-app purchases",
+      playT:"Play KAK+TAS", playS:"Google Play · Android · Free", kidsS:"Kid-safe · no ads · no internet",
+      trailer:"Watch the trailer", more:"More games", follow:"Follow", foot:"Made solo by an indie dev. Feedback welcome!"},
+  es:{name:"ES", rtl:false, tag:"Un puzzle gratis para explotar — sin anuncios ni compras",
+      playT:"Juega a KAK+TAS", playS:"Google Play · Android · Gratis", kidsS:"Seguro para peques · sin anuncios · sin internet",
+      trailer:"Ver el tráiler", more:"Más juegos", follow:"Seguir", foot:"Hecho en solitario por un dev indie. ¡Tu opinión cuenta!"},
+  pt:{name:"PT", rtl:false, tag:"Um quebra-cabeça grátis de explodir — sem anúncios nem compras",
+      playT:"Jogar KAK+TAS", playS:"Google Play · Android · Grátis", kidsS:"Seguro para crianças · sem anúncios · sem internet",
+      trailer:"Ver o trailer", more:"Mais jogos", follow:"Seguir", foot:"Feito sozinho por um dev indie. Seu feedback é bem-vindo!"},
+  ar:{name:"العربية", rtl:true, tag:"لغز تفجير مجاني — بدون إعلانات أو مشتريات",
+      playT:"العب KAK+TAS", playS:"جوجل بلاي · أندرويد · مجانية", kidsS:"آمنة للأطفال · بدون إعلانات · بدون إنترنت",
+      trailer:"شاهد الإعلان", more:"ألعاب أخرى", follow:"تابِع", foot:"صنعها مطوّر مستقل بمفرده. رأيك يهمّنا!"},
+  ja:{name:"日本語", rtl:false, tag:"無料の全消しパズル — 広告なし・課金なし",
+      playT:"KAK+TAS を遊ぶ", playS:"Google Play · Android · 無料", kidsS:"子どもに安全・広告なし・通信なし",
+      trailer:"トレーラーを見る", more:"他の作品", follow:"フォロー", foot:"個人開発。フィードバック歓迎！"}
+};
+const ORDER=["en","es","pt","ar","ja"];
+function pickLang(){const l=(navigator.languages||[navigator.language||"en"]).map(x=>x.toLowerCase());
+  for(const c of l){const t=c.slice(0,2); if(I18N[t]) return t;} return "en";}
+function apply(lang){const d=I18N[lang];document.documentElement.lang=lang;
+  document.documentElement.dir=d.rtl?"rtl":"ltr";
+  document.querySelectorAll("[data-t]").forEach(el=>{el.textContent=d[el.getAttribute("data-t")]||"";});
+  document.querySelectorAll("#langs button").forEach(b=>b.classList.toggle("on",b.dataset.l===lang));}
+const langs=document.getElementById("langs");
+ORDER.forEach(c=>{const b=document.createElement("button");b.textContent=I18N[c].name;b.dataset.l=c;b.onclick=()=>apply(c);langs.appendChild(b);});
+apply(pickLang());
+</script>
+</body>
+</html>
